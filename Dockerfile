@@ -22,7 +22,7 @@ COPY . .
 RUN groupadd -g 10001 appuser && useradd -u 10001 -g appuser -s /bin/sh -m appuser
 
 # Set the user to be used for the container
-USER appuser
+USER 10001
 
 # Configure SSH to allow the appuser
 RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config && \
