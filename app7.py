@@ -43,7 +43,7 @@ def handle_disconnect():
 
     if sid in victims:
         del victims[sid]  # Remove victim from the list
-        save_victims()  # Persist the update
+        #save_victims()  # Persist the update
         app.logger.info(f"Victim {sid} removed from connected victims.")
         emit('victim_disconnected', {'sid': sid}, broadcast=True)
 
@@ -60,7 +60,7 @@ def handle_victim_info(data):
 
     # Update existing victim or add a new victim
     victims[sid] = victim_data
-    save_victims()  # Persist victim list
+    #save_victims()  # Persist victim list
     app.logger.info(f"Victim {sid} connected or reconnected: {victim_data}")
 
     emit('victim_connected', {'victim': victim_data}, broadcast=True)
