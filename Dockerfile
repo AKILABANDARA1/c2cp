@@ -14,10 +14,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create a non-root user with UID 10014 (valid for Choreo checks)
-RUN useradd -m -u 10001 myc2user
+RUN groupadd -g 10001 appuser && useradd -u 10001 -g appuser -s /bin/sh appuser
 
 # Set the user to be used for the container
-USER myc2user
+USER 10001
 
 # Expose port 80 for the Flask app
 EXPOSE 80
