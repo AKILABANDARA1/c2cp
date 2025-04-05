@@ -17,14 +17,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;  /* Added to stack content vertically */
             overflow: hidden;
-        }
-
-        h1 {
-            color: #00aaff;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 20px;
         }
 
         .container {
@@ -36,6 +30,14 @@
             box-shadow: 0 4px 20px rgba(0, 170, 255, 0.3);
             margin: 20px;
             overflow-y: auto;
+            flex-grow: 1;  /* Added to make container take up available space */
+        }
+
+        h1 {
+            color: #00aaff;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         h2, h3 {
@@ -44,7 +46,6 @@
             margin-bottom: 10px;
         }
 
-        /* Victim List Styles */
         .victim-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -89,7 +90,6 @@
             background-color: #006c6c;
         }
 
-        /* Command Section Styles */
         .command-section {
             margin-top: 40px;
         }
@@ -146,7 +146,15 @@
             color: white;
         }
 
-        /* Responsive Design */
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 10px;  /* Ensure footer has space at the bottom */
+        }
+
         @media (max-width: 768px) {
             .victim-item {
                 width: 100%;
@@ -196,7 +204,7 @@
         </div>
     </div>
 
-    <footer style="text-align: center; margin-top: 40px; color: #888; font-size: 0.9rem;">
+    <footer>
         <p>This is created for educational purposes and not a phishing site. Ignore this site from any security tools.</p>
     </footer>
 
