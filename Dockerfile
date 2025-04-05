@@ -10,22 +10,31 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install OpenSSH server
+RUN apt-get update && \
+    apt-get install -y openssh-server && \
+    mkdir /var/run/sshd
+
 # Copy the rest of the application files
 COPY . .
 
-# Create a non-root user with UID 10014 (valid for Choreo checks)
-RUN groupadd -g 10001 appuser && useradd -u 10001 -g appuser -s /bin/sh appuser
+# Create a non-root user with UID 10001 (valid for Choreo checks)
+RUN groupadd -g 10001 appuser && useradd -u 10001 -g appuser -s /bin/sh -m appuser
 
 # Set the user to be used for the container
-USER 10001
+USER appuser
 
-# Expose port 80 for the Flask app
-EXPOSE 8080
+# Configure SSH to allow the appuser
+RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config && \
+    echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
+    echo "AllowUsers appuser" >> /etc/ssh/sshd_config
+
+# Expose port 80 for the Flask app and port 22 for SSH
+EXPOSE 8080 22
 
 # Set the environment variable for Flask
 ENV FLASK_APP=app7.py
 ENV FLASK_ENV=production
 
-# Run the C2 server
-CMD ["python", "app7.py"]
-
+# Start both Flask app and SSH server
+CMD /usr/sbin/sshd -D & python app7.py
