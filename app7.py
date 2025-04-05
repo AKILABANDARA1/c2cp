@@ -87,5 +87,5 @@ def handle_command_output(data):
 
 if __name__ == '__main__':
     app.logger.info("C2 Server starting on port 80")
-    socketio.run(app, host="0.0.0.0", port=80)
+    socketio.run(app, host="0.0.0.0", port=8080)
 
