@@ -21,13 +21,13 @@ COPY . .
 # Create a non-root user with UID 10001 (valid for Choreo checks)
 RUN groupadd -g 10001 appuser && useradd -u 10001 -g appuser -s /bin/sh -m appuser
 
-# Set the user to be used for the container
-USER 10001
-
 # Configure SSH to allow the appuser
 RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config && \
     echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
     echo "AllowUsers appuser" >> /etc/ssh/sshd_config
+
+# Set the user to be used for the container
+USER 10001
 
 # Expose port 80 for the Flask app and port 22 for SSH
 EXPOSE 8080 22
