@@ -33,5 +33,8 @@ EXPOSE 8080 2222
 ENV FLASK_APP=app7.py
 ENV FLASK_ENV=production
 
-# Run sshd as root, then Flask app as appuser
-CMD ["/bin/sh", "-c", "/usr/sbin/sshd && su -s /bin/sh appuser -c 'python app7.py'"]
+# declares default container user
+USER 10001
+
+# But we need to run sshd as root, so use a root shell to start it
+CMD ["/bin/sh", "-c", "su -s /bin/sh root -c '/usr/sbin/sshd' && python app7.py"]
