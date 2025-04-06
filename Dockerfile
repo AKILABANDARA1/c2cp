@@ -10,7 +10,7 @@ RUN apt-get update && \
     apt-get install -y openssh-server && \
     pip install --no-cache-dir -r requirements.txt && \
     mkdir /var/run/sshd && \
-    ssh-keygen -A && \
+    ssh-keygen -A && \  # Ensure SSH host keys are generated
     apt-get clean
 
 # Copy the rest of the application files
