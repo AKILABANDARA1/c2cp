@@ -15,6 +15,9 @@ RUN apt-get update && \
     apt-get install -y openssh-server && \
     mkdir /var/run/sshd
 
+# Generate SSH host keys
+RUN ssh-keygen -A
+
 # Copy the rest of the application files
 COPY . .
 
