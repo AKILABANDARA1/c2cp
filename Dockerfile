@@ -11,7 +11,7 @@ RUN apt-get update && \
     pip install --no-cache-dir -r requirements.txt && \
     mkdir /var/run/sshd && \
     ssh-keygen -A && \  # Ensure SSH host keys are generated
-    apt-get clean
+ #   apt-get clean
 
 # Copy the rest of the application files
 COPY . .
