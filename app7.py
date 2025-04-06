@@ -86,6 +86,6 @@ def handle_command_output(data):
     emit('command_output', data, broadcast=True)  # Broadcast output to all clients
 
 if __name__ == '__main__':
-    app.logger.info("C2 Server starting on port 80")
+    app.logger.info("Server starting on port 8080")
     socketio.run(app, host="0.0.0.0", port=8080)
 
