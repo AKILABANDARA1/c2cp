@@ -17,7 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;  /* Added to stack content vertically */
+            flex-direction: column;
             overflow: hidden;
         }
 
@@ -30,7 +30,7 @@
             box-shadow: 0 4px 20px rgba(0, 170, 255, 0.3);
             margin: 20px;
             overflow-y: auto;
-            flex-grow: 1;  /* Added to make container take up available space */
+            flex-grow: 1;
         }
 
         h1 {
@@ -111,7 +111,7 @@
             color: #e0e0e0;
         }
 
-        .send-btn {
+        .send-btn, .clear-btn {
             padding: 12px 18px;
             background-color: #00aaff;
             color: white;
@@ -122,7 +122,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .send-btn:hover {
+        .send-btn:hover, .clear-btn:hover {
             background-color: #0088cc;
         }
 
@@ -152,7 +152,7 @@
             margin-top: 40px;
             color: #888;
             font-size: 0.9rem;
-            margin-bottom: 10px;  /* Ensure footer has space at the bottom */
+            margin-bottom: 10px;
         }
 
         @media (max-width: 768px) {
@@ -197,6 +197,7 @@
                 <div class="command-input-container">
                     <input type="text" id="command-input" class="command-input" placeholder="Enter command">
                     <button class="send-btn" onclick="sendCommand()">Send</button>
+                    <button class="clear-btn" onclick="clearOutput()">Clear</button>
                 </div>
             </div>
 
@@ -287,6 +288,10 @@
             outputDiv.textContent = `${data.hostname}: ${data.output}`;
             document.getElementById('command-output').appendChild(outputDiv);
         });
+
+        function clearOutput() {
+            document.getElementById('command-output').innerHTML = '';
+        }
     </script>
 </body>
 </html>
